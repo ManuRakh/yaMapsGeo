@@ -4,6 +4,11 @@ var groups = [
             style: "islands#greenIcon",
             items: [
                 {
+                    center: [53.88952, 27.515524],
+                    name:'Выберите район из списка',
+                    id:0
+                },
+                {
                     center: [53.908952, 27.575524],
                     name: "проспект Независимости",
                     id: 1
