@@ -4,10 +4,7 @@ const client = new Client({
     host: 'localhost',
     database: 'ya_maps_geo',
     password: '123456',
-    // port: 3211,
   })
-
-
 
 exports.get_db_name = ()=>{
     //вернуть имя бд
@@ -26,7 +23,6 @@ exports.get_port = () =>{
 }
 exports.run_db_server =async () =>{
     client.connect()
-
     console.log("DB runned")
 }
 exports.get_db_connection = () =>{
