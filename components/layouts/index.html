@@ -45,6 +45,28 @@
 
 <body>
     <div id="map" style="width: 1000px; height: 700px"></div>
+    <script>
+        function add_coords(){
+        let x = document.getElementById("x_coord").value
+        let y = document.getElementById("y_coord").value
+        let name = document.getElementById("name_address").value
+
+        console.log('voided')
+        var settings = {
+            "url": "http://localhost:3000/add_coord",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({"x":x,"y":y,"name":name}),
+          };
+          
+          $.ajax(settings).done(function (err, response) {
+            if(!err) alert("Метка успешно добавлена!")
+          });
+    }
+    </script>
 </body>
 
 </html>

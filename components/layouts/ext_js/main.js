@@ -21,8 +21,6 @@ function get_coords()
 }
 
 function init(coords) {
-    console.log(coords)
-    console.log(groups)
     groups[0].items = coords[0].items
     // Создание экземпляра карты.
     var myMap = new ymaps.Map('map', {
@@ -36,7 +34,7 @@ function init(coords) {
     for (var i = 0, l = groups.length; i < l; i++) {
         createMenuGroup(groups[i]); 
     }
-
+    show_coords(myMap)
     function createMenuGroup (group) {
         // Пункт меню.
             collection = new ymaps.GeoObjectCollection(null, { preset: group.style }),
@@ -73,7 +71,30 @@ function init(coords) {
             createSubMenu(group.items[j], collection, submenu2);
         }
     }
+    function show_coords (map){
+        map.events.add('click', function (e) {
+            if (!myMap.balloon.isOpen()) {
+                var coords = e.get('coords');
+                myMap.balloon.open(coords, {
+                    contentHeader:'',
+                    contentBody:'<p>Вы щелкнули на точку.</p>' +
+                        '<br/> Если вы считаете что это автомойка, пожалуйста подтвердите действие и метка появится тут для всех пользователей!'+
+                        '<p>Добавить координату на карту: '
+                        +'<br/> <input id = "x_coord" value = ' + coords[0].toPrecision(6) +' readonly>'
+                        +'<br/> <input id = "y_coord" value = ' + coords[1].toPrecision(6) +' readonly>'
 
+                        +'<br/> Укажите пожалуйста название Автомойки, или адресс!'+
+                        '<br/> <input id = "name_address" placeholder = "Улица Маяковского дом 3" size = "50" required>'
+                        ,
+                    contentFooter:'<sup> <button onclick = "add_coords()">Подтвердить добавление</button></sup>'
+                });
+            }
+            else {
+                map.balloon.close();
+            }
+        });
+    }
+    
     function createSubMenu (item, collection, submenu2) { //добавить list итемы для нашего List Box
         // Пункт подменю.
         placemark = new ymaps.Placemark(item.center, { balloonContent: item.name });//добавить метки на карту. и название.
