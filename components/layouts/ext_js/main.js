@@ -99,9 +99,11 @@ function init(coords) {
         // Пункт подменю.
         let balloonContent = { 
         
-            balloonContent:  "<p>" + item.name + "</p>"+
-            "<br/> Координаты ["+item.x_coord+ "," + item.y_coord  + "]" +
-            "<br/> " + item.description 
+            balloonContent:  "<p>" + item.name + "</p>"
+            +'<br/> <input id = "x_coord_del" value = ' + item.x_coord +' readonly>'
+            +'<br/> <input id = "y_coord_del" value = ' + item.y_coord +' readonly>'
+            +"<br/> " + item.description 
+            +"<br/> <button onclick = 'delete_coords()'> Удалить Метку!</button>"
             }
         placemark = new ymaps.Placemark(item.center, balloonContent);//добавить метки на карту. и название.
         collection.add(placemark);
@@ -109,8 +111,7 @@ function init(coords) {
         var submenuItem = $('<option value='+item.id+'>' + item.name + '</option>');
         // Добавляем пункт в подменю.
         submenuItem
-            .appendTo(submenu2); //добавить итемы к основному List box
-           
+            .appendTo(submenu2); //добавить итемы к основному List box     
     }
 
     menu.appendTo($('body')); //добавить list box к тегу body.

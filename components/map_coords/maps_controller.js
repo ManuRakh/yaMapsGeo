@@ -3,6 +3,8 @@
 const get_coords = require("./modules/get_coords.js")
 const add_coords = require("./modules/add_coords.js")
 const edit_coords = require("./modules/edit.coords.js")
+const delete_coords = require("./modules/delete_coords.js")
+
 //** Данный контроллер осуществляет распределение функций
 // * и модулей по мере их вызовов
 // * В данном случае не нужно импортировать  100 модулей в файл для роутов 
@@ -16,4 +18,7 @@ exports.get_coords = (req, res) =>{
 }
 exports.edit_coords = (req, res) =>{
     edit_coords(req, res)
+}
+exports.delete_coords = (req, res) =>{
+    delete_coords(req, res)
 }
