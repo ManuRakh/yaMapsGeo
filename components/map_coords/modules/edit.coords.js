@@ -4,6 +4,11 @@ const client = config.get_db_connection();
 
 var edit_coords = async (req, res) => {
     res.header('Content-Type', 'application/json');
+    //** Обновление информации
+    // * Получаем данные из реквеста
+    // * Проверяем если такие данные есть в БД
+    // * Если есть - обновить
+    // * Иначе - выслать сообщение об ошибке
     let body = req.body;
     let x_coord = body.x_coord;
     let y_coord = body.y_coord;

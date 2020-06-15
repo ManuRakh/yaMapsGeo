@@ -2,7 +2,7 @@ const config = require("../../config/config.js");
 const client = config.get_db_connection();
 
 
-var add_coords = async (req, res) => {
+var add_coords = async (req, res) => { //добавляем координаты в бд
     res.header('Content-Type', 'application/json');
     let body = req.body;
     const values = [body.x_coord, body.y_coord, body.name, body.description];
