@@ -1,9 +1,13 @@
 const { Pool, Client } = require('pg')
+const user = 'owner'
+const host = 'localhost'
+const database = 'ya_maps_geo'
+const password = '123456'
 const client = new Client({
-    user: 'owner',
-    host: 'localhost',
-    database: 'ya_maps_geo',
-    password: '123456',
+    user: user,
+    host: host,
+    database: database,
+    password: password,
   })
 
 exports.get_db_name = ()=>{
