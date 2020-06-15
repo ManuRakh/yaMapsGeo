@@ -11,3 +11,7 @@
 
 ## Сделали? - Запускайте!
 npm start и вы готовы начинать.
+
+## Скриншоты
+![alt text](components/images/screenshot1.png)
+![alt text](components/images/screenshot2.png)
