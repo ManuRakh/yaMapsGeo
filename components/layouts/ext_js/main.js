@@ -21,7 +21,7 @@ function get_coords()
 }
 
 function init(coords) {
-    groups[0].items = coords[0].items
+    let groups = coords
     // Создание экземпляра карты.
     var myMap = new ymaps.Map('map', {
             center: [53.896468, 27.546445],
