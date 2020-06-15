@@ -48,24 +48,22 @@ function init(coords) {
         submenu2.click();
             submenu2.bind('click',function()
             {
-                
-               // alert($(this).val());
                 for (var j = 0, m = group.items.length; j < m; j++) { //в случае изменения клика по метке изменить центр карты и клик по метке.
-                    placemark = new ymaps.Placemark(group.items[j].center, { balloonContent: group.items[j].name });//добавить метки на карту. и название.
-                    collection.add(placemark);
+                        placemark = new ymaps.Placemark(group.items[j].center, { balloonContent: group.items[j].name });//добавить метки на карту. и название.
+                        collection.add(placemark);
 
-                    if($(this).val()==group.items[j].id)
-                        { 
-                            myMap.setCenter(group.items[j].center);//изменяет центр 
-                            if (!placemark.balloon.isOpen()) { 
-                                placemark.balloon.open();
+                        if($(this).val()==group.items[j].id)
+                            { 
+                                myMap.setCenter(group.items[j].center);//изменяет центр 
+                                if (!placemark.balloon.isOpen()) { 
+                                    placemark.balloon.open();
+                                }
+                                myMap.setCenter([53.896468, 27.546445]);
+                                myMap.setZoom(19); //максимальное увеличение обзора местности
                             }
-                            myMap.setCenter([53.896468, 27.546445]);
-                            myMap.setZoom(19); //максимальное увеличение обзора местности
-                        }
 
-                }
-            });
+                    }
+                });
             
         for (var j = 0, m = group.items.length; j < m; j++) {
             createSubMenu(group.items[j], collection, submenu2);
@@ -84,7 +82,9 @@ function init(coords) {
                         +'<br/> <input id = "y_coord" value = ' + coords[1].toPrecision(6) +' readonly>'
 
                         +'<br/> Укажите пожалуйста название Автомойки, или адресс!'+
-                        '<br/> <input id = "name_address" placeholder = "Улица Маяковского дом 3" size = "50" required>'
+                        '<br/> <input id = "name_address" placeholder = "Улица Маяковского дом 3" size = "50" required>'+
+                        "<p> Добавьте описание, можно подробное "+
+                        '<br/> <textarea id = "big_text"> </textarea>' 
                         ,
                     contentFooter:'<sup> <button onclick = "add_coords()">Подтвердить добавление</button></sup>'
                 });
@@ -97,7 +97,13 @@ function init(coords) {
     
     function createSubMenu (item, collection, submenu2) { //добавить list итемы для нашего List Box
         // Пункт подменю.
-        placemark = new ymaps.Placemark(item.center, { balloonContent: item.name });//добавить метки на карту. и название.
+        let balloonContent = { 
+        
+            balloonContent:  "<p>" + item.name + "</p>"+
+            "<br/> Координаты ["+item.x_coord+ "," + item.y_coord  + "]" +
+            "<br/> " + item.description 
+            }
+        placemark = new ymaps.Placemark(item.center, balloonContent);//добавить метки на карту. и название.
         collection.add(placemark);
 
         var submenuItem = $('<option value='+item.id+'>' + item.name + '</option>');

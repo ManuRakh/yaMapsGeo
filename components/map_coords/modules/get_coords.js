@@ -1,4 +1,4 @@
-const config = require("../config/config.js");
+const config = require("../../config/config.js");
 const client = config.get_db_connection();
 
 var get_coords = async (req, res) =>{

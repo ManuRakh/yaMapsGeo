@@ -1,8 +1,8 @@
 
 
-const get_coords = require("../map_coords/get_coords.js")
-const add_coords = require("../map_coords/add_coords.js")
-const edit_coords = require("../map_coords/edit.coords.js")
+const get_coords = require("./modules/get_coords.js")
+const add_coords = require("./modules/add_coords.js")
+const edit_coords = require("./modules/edit.coords.js")
 
 exports.add_coords = (req, res) =>{
     add_coords(req, res)

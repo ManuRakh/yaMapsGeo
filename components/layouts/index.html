@@ -48,16 +48,15 @@
         let x = document.getElementById("x_coord").value
         let y = document.getElementById("y_coord").value
         let name = document.getElementById("name_address").value
-
-        console.log('voided')
+        let desc = document.getElementById("big_text").value
         var settings = {
-            "url": "http://localhost:3000/api/1.0/add_coord",
+            "url": "http://localhost:3000/api/1.0/add_coords",
             "method": "POST",
             "timeout": 0,
             "headers": {
               "Content-Type": "application/json"
             },
-            "data": JSON.stringify({"x":x,"y":y,"name":name}),
+            "data": JSON.stringify({"x_coord":x,"y_coord":y,"name":name, "description":desc}),
           };
           
           $.ajax(settings).done(function (err, response) {
