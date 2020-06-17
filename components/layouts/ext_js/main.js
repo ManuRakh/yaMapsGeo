@@ -4,18 +4,50 @@ ymaps.ready(get_coords);
 
 function get_coords()
 {
+    // var settings = {
+    //     "url": "http://localhost:3000/api/1.0/get_coords",
+    //     "method": "GET",
+    //     "timeout": 0,
+    //     "headers": {
+    //       "Content-Type": "application/json"
+    //     },
+    //     "data": JSON.stringify({"x":"53.924757","y":"27.522683","name":"улица Сапёров"}),
+    //   };
+      
+    //   $.ajax(settings).done(function (response) {
+    //     init(response)
+    //   });
     var settings = {
-        "url": "http://localhost:3000/api/1.0/get_coords",
-        "method": "GET",
+        "url": "http://localhost:3000/graph",
+        "method": "POST",
         "timeout": 0,
         "headers": {
           "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"x":"53.924757","y":"27.522683","name":"улица Сапёров"}),
+        "data": JSON.stringify({
+          query: "query{\r\n  get_points{\r\n id\r\n    x_coord\r\n    y_coord\r\n    name\r\n    description \r\n  }\r\n}",
+          variables: {}
+        })
       };
       
-      $.ajax(settings).done(function (response) {
-        init(response)
+      $.ajax(settings).done(function (res) {
+        res = res.data
+        res.items = res.get_points
+        res.style = "islands#greenIcon",
+        delete res.get_points
+        for(element of res.items){
+            element.center = []
+            element.center.push(element.x_coord)
+            element.center.push(element.y_coord)
+            delete element.x_coord
+            delete element.y_coord
+        }
+        // console.log(res)
+        let arr = []
+        arr.push(res)
+        console.log(arr);
+
+        init(arr)
       });
 }
 
@@ -99,8 +131,8 @@ function init(coords) {
         let balloonContent = { 
         
             balloonContent:  "<p>" + item.name + "</p>"
-            +'<br/> <input id = "x_coord_del" value = ' + item.x_coord +' readonly>'
-            +'<br/> <input id = "y_coord_del" value = ' + item.y_coord +' readonly>'
+            +'<br/> <input id = "x_coord_del" value = ' + item.center[0] +' readonly>'
+            +'<br/> <input id = "y_coord_del" value = ' + item.center[1] +' readonly>'
             +"<br/> " + item.description 
             +"<br/> <button onclick = 'delete_coords()'> Удалить Метку!</button>"
             }
