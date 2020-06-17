@@ -9,6 +9,7 @@ exports.set_map_routes = async (app, dir_name) => {
         res.sendFile(dir_name + "/components/layouts/index.html");
     });
     app.get('/api/1.0/get_coords', async (req, res) => {
+        
         maps_controller.get_coords(req, res)
     });
     app.post('/api/1.0/add_coords', urlencodedParser, jsonParser, async (req, res) => {

@@ -9,7 +9,6 @@ function get_coords()
         "method": "GET",
         "timeout": 0,
         "headers": {
-          "Authorization": "Bearer 82wwsniolndcw78bpx6v927ccb8da28pdn2badpl",
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({"x":"53.924757","y":"27.522683","name":"улица Сапёров"}),
