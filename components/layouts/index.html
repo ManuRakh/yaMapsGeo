@@ -50,10 +50,11 @@
         let name = document.getElementById("name_address").value
         let desc = document.getElementById("big_text").value
         let json = JSON.stringify({"x_coord":x,"y_coord":y,"name":name, "description":desc})
+        let rand_id = getRandomArbitrary(10000, 1000000)
         let query = JSON.stringify({
-                query: "mutation{\r\n  add_coord(x_coord:"+ x +", y_coord:"+ y +", description: "+ desc+"){\r\n    id\r\n  }\r\n}",
-                variables: {}
-            })
+            query: 'mutation{\r\n  add_coords(id:'+ rand_id +', x_coord:'+ x +', y_coord:' + y + ', name:"' + name + '", description:"'+ desc +'")\r\n{\r\n\tid  \r\n}\r\n}',
+            variables: {}
+        })
         set_post_settings(query)
         }
     function delete_coords(){
@@ -84,6 +85,9 @@
             }
             });
     }
+    function getRandomArbitrary(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+}
     </script>
 </body>
 
