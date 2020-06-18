@@ -1,0 +1,25 @@
+version: 2
+tables:
+- table:
+    schema: public
+    name: map_points
+- table:
+    schema: public
+    name: profile
+  event_triggers:
+  - name: echo
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+      delete:
+        columns: '*'
+      update:
+        columns:
+        - id
+        - name
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: https://httpbin.org/post

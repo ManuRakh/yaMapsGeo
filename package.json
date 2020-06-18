@@ -18,6 +18,7 @@
         "start": "node app.js"
     },
     "devDependencies": {
-        "graphpack": "^1.0.9"
+        "graphpack": "^1.0.9",
+        "hasura-cli": "^1.2.2"
     }
 }

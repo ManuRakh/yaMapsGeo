@@ -25,10 +25,11 @@ const RootMutation = new GraphQLObjectType({
                     args.name,
                     args.description
                 ];
-                return await db
+                let res =  await db
                     .none(query, values)
                     .then(res => res)
                     .catch(err => err);
+                    return res
             }
         },
         delete_coords:{

@@ -21,6 +21,11 @@
       schema:schema,
       graphiql:true
   }))
-
+//   app.get('/v1/version', (req, res)=>{
+//       res.send({ok:true})
+//   })
+//   app.post('/v1/query', (req, res)=>{
+//       res.send({ok:true})
+//   })
   app.listen(port)
   console.log('API server running at localhost:' + port);

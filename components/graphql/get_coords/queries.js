@@ -17,6 +17,7 @@ const RootQuery = new GraphQLObjectType({
             .many(query)
             .then(res =>res)
             .catch(err=>err)
+            console.log(res)
             return res
        }
     },
