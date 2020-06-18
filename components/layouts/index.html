@@ -50,30 +50,39 @@
         let name = document.getElementById("name_address").value
         let desc = document.getElementById("big_text").value
         let json = JSON.stringify({"x_coord":x,"y_coord":y,"name":name, "description":desc})
-        let route = 'add_coords'
-        set_post_settings(json, route)
+        let query = JSON.stringify({
+                query: "mutation{\r\n  add_coord(x_coord:"+ x +", y_coord:"+ y +", description: "+ desc+"){\r\n    id\r\n  }\r\n}",
+                variables: {}
+            })
+        set_post_settings(query)
         }
     function delete_coords(){
         let x = document.getElementById("x_coord_del").value
         let y = document.getElementById("y_coord_del").value
         let json = JSON.stringify({"x_coord":x,"y_coord":y})
-        let route = 'delete_coords'
-        set_post_settings(json, route)
+        let query = JSON.stringify({
+                query: "mutation{\r\n  delete_coords(x_coord:"+ x +", y_coord:"+ y +"){\r\n    id\r\n  }\r\n}",
+                variables: {}
+            })        
+        set_post_settings(query)
     }
-    function set_post_settings(data, route){
-        var settings = {
-            "url": "http://localhost:3000/api/1.0/" + route,
+    function set_post_settings(query){
+          var settings = {
+            "url": "http://localhost:3000/graph",
             "method": "POST",
             "timeout": 0,
             "headers": {
-              "Content-Type": "application/json"
+                "Content-Type": "application/json"
             },
-            "data": data,
-          };
-          console.log(settings)
-          $.ajax(settings).done(function (err, response) {
-            if(!err) alert("Метка успешно добавлена!")
-          });
+            "data":query
+            };
+
+            $.ajax(settings).done(function (response) {
+            // console.log(response);
+            if(response==null){
+                alert("Успешно удалено, перезагрузите страницу")
+            }
+            });
     }
     </script>
 </body>

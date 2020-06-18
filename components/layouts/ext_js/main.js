@@ -4,19 +4,6 @@ ymaps.ready(get_coords);
 
 function get_coords()
 {
-    // var settings = {
-    //     "url": "http://localhost:3000/api/1.0/get_coords",
-    //     "method": "GET",
-    //     "timeout": 0,
-    //     "headers": {
-    //       "Content-Type": "application/json"
-    //     },
-    //     "data": JSON.stringify({"x":"53.924757","y":"27.522683","name":"улица Сапёров"}),
-    //   };
-      
-    //   $.ajax(settings).done(function (response) {
-    //     init(response)
-    //   });
     var settings = {
         "url": "http://localhost:3000/graph",
         "method": "POST",

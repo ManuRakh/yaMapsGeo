@@ -1,5 +1,5 @@
 const { db } = require("../connection/adaptor");
-const { GraphQLObjectType, GraphQLID, GraphQLList } = require("graphql");
+const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLFloat } = require("graphql");
 const { UserType, MapType } = require("../types/types");
 
 const RootQuery = new GraphQLObjectType({
@@ -17,12 +17,8 @@ const RootQuery = new GraphQLObjectType({
             .many(query)
             .then(res =>res)
             .catch(err=>err)
-            // res = JSON.parse(res)
-            // res = res.get_points
-            // res = JSON.stringify(res)
-            console.log(res)
             return res
-       } 
+       }
     },
     user:{
         type:UserType,
